@@ -1,5 +1,6 @@
 {
-  "name": "Chrome Extension Webpack",
+  "name": "kintone Field Inspector",
+  "description": "Helps kintone field inspection",
   "options_page": "options.html",
   "background": {
     "page": "background.html"
@@ -12,5 +13,13 @@
     "128": "icon-128.png"
   },
   "manifest_version": 2,
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_scripts": [
+    {
+      "matches": ["https://*.cybozu.com/k/*"],    
+      "run_at": "document_idle",
+      "js": ["contentScript.bundle.js"]
+    }
+  ],
+  "web_accessible_resources": ["kintoneFieldInspector.bundle.js"]
 }
